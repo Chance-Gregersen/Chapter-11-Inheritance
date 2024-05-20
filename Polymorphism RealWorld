@@ -1,0 +1,103 @@
+import java.util.Scanner;
+class Account {
+	public void thing() {}
+		double ID = 0;
+		double balance = 0;
+		double interest = 0;
+		Account(double nID, double nBalance, double nIntrest) {
+			ID = nID;
+			balance = nBalance;
+			interest = nIntrest;
+		}
+		 public double Deposit(double deposit) {
+			 balance = balance+deposit;
+			 return balance;
+			 }
+		 
+		 public double Withdraw(double withdraw) {	
+			 balance = balance-withdraw;
+			 return balance;
+			 }
+		 
+		 public double overdraft(double withdraw) {	
+			 balance = (balance+500)-withdraw;
+			 return balance;
+			 }
+}
+class SavingsAccount extends Account{
+	SavingsAccount(double nID, double nBalance, double nIntrest) {super(nID, nBalance, nIntrest);}
+	public void thing() {
+		Scanner input = new Scanner(System.in);
+		Account p = new Account(4, 40, 0.45);
+		 double removal = 0;
+		 double sublimate =0;
+		System.out.println("Your Savings account balance is: " + p.balance);
+		
+		int i = 0;
+		do {
+			
+            System.out.println("1: Withdraw");
+            System.out.println("2: Deposit");
+            System.out.println("3: Go to Checkings account");
+			 System.out.print("\nChoose an Option: ");
+	            int menuChoice = input.nextInt();
+	           
+	            if (menuChoice == 1) { 
+	            	System.out.print("Enter amount to withdraw: ");
+	            	 removal = input.nextInt();
+	            	 System.out.println("Your new balance is "+p.Withdraw(removal));}
+	            
+	            if (menuChoice == 2) {
+	            	System.out.printf("\nEnter amount to deposit: ");
+	            	 sublimate = input.nextInt();
+	            	 System.out.println("Your new balance is "+p.Deposit(sublimate));}
+	            
+	            if (menuChoice == 3) {
+	            	 i=i+1;}
+		}while (i==0);
+	}
+}
+class CheckingsAccount extends Account{
+	CheckingsAccount(double nID, double nBalance, double nIntrest) {super(nID, nBalance, nIntrest);}
+	public void thing() {
+		Scanner input = new Scanner(System.in);
+		Account t = new Account(4, 40, 0.45);
+		 double removal = 0;
+		 double sublimate =0;
+		System.out.println("Your Checkings account balance is: " + t.balance);
+		
+		int n = 0;
+		do {
+			
+            System.out.println("1: Withdraw");
+            System.out.println("2: Deposit");
+            System.out.println("3: Exit");
+			 System.out.print("\nChoose an Option: ");
+	            int menuChoice = input.nextInt();
+	           
+	            if (menuChoice == 1) { 
+	            	System.out.print("Enter amount to withdraw: ");
+	            	 removal = input.nextInt();
+	            	 System.out.println("Your new balance is "+t.overdraft(removal)+ " (500$ overdracft included)");}
+	            
+	            if (menuChoice == 2) {
+	            	System.out.printf("\nEnter amount to deposit: ");
+	            	 sublimate = input.nextInt();
+	            	 System.out.println("Your new balance is "+t.Deposit(sublimate));}
+	            
+	            if (menuChoice == 3) {
+	            	 n=n+1;}
+		}while (n==0);
+	}
+}
+public class Maine {
+	public static void main(String[] args) {
+		
+		Account s = new SavingsAccount(0, 0, 0);
+		s.thing();
+		
+		Account c = new CheckingsAccount(0, 0, 0);
+		c.thing();
+		
+	}
+}
