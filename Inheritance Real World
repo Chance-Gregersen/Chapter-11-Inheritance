@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import static java.lang.Math.sqrt;
+import java.util.Date;
+public class Geometric {
+	 static Scanner input = new Scanner(System.in);
+double side1 = 0;
+double side2 = 0;
+double side3 = 0;
+String Color = " ";
+static Boolean Full = null;
+	
+Geometric(double sideI, double sideII, double sideIII) {
+	side1 = sideI;
+	side2 = sideII;
+	side3 = sideIII;
+}
+Geometric(String Folor, Boolean Fill) {
+	Color=Folor;
+	Full=Fill;
+}
+ static class triangle extends Geometric{
+		 triangle(double sideI, double sideII, double sideIII) {
+		super(sideI, sideII, sideIII);}
+		 
+		public static void main(String[] args) {
+			System.out.println("Enter Side 1: ");
+			int SideOne = input.nextInt();
+			System.out.println("Enter Side 2: ");
+			int SideTwo = input.nextInt();
+			System.out.println("Enter Side 3: ");
+			int SideThree = input.nextInt();
+			
+			String Color;
+			System.out.println("What color is the triangle?: ");
+			input.nextLine(); 
+		       Color = input.nextLine();
+		       
+		       System.out.println("TRUE for filled, FALSE for empty: ");
+				Boolean Full = input.nextBoolean();
+			
+			Geometric Col = new Geometric(Color,Full);
+          
+			 Geometric Tri = new Geometric(SideOne, SideTwo, SideThree);
+			 System.out.println("\nTriangle:");
+			 System.out.println("Area: " + Tri.getArea());
+			 System.out.println("Perimeter: " + Tri.getPerimeter());
+			 System.out.println(Col.toString());
+			 
+			 Date date = new Date();
+			 System.out.println("This triangle was created: "+date.toString());
+		}
+ }
+ double getArea() {		
+	 double s = (side1+side2+side3)/2;
+	 
+	 double Area = Math.sqrt(s*(s-side1)*(s-side2)*(s-side3));
+		return Area;}
+	 
+	 double getPerimeter() {		
+			return side1+side2+side3;}
+	 
+	 public String toString() {	
+		 String ToF = " ";
+		 if (Full = true) {
+			 ToF = "Filled";
+		 }else
+		     ToF = "Empty";
+		 
+		 String s1 = "The color is "+Color + ", and is " + ToF;
+			return s1;}
+}
